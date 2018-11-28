@@ -8,6 +8,24 @@ def show_menu():
     
 #print(show_menu())  #test code so far using print function to call it. cd into quiz folder
 
+def ask_questions():            #create 2 empty lists for Q & A
+    questions = []
+    answers = []
+    
+    with open("questions.txt", "r") as file:
+        lines = file.read().splitlines()   #read file in and split the lines. put in variable lines
+        
+    for i, text in enumerate(lines):#enumerate function turns each list into a tuple.line num stored in i.text in text
+        if i%2 == 0:
+            questions.append(text)  #if line number is even..Q
+        else:
+            answers.append(text)
+            
+            
+    for question, answer in zip(questions, answers): #take Q&A and use zip function to put them together in tuple in memory
+        guess = input(question + "> ")  #do an input with our guess
+        
+
 def add_question():
     print("")
     question = input("Enter a question\n> ")        #store in question variable using input
@@ -27,7 +45,7 @@ def game_loop():
     while True:         #shortcut for loop forever unless theres a break
         option = show_menu()  #call show_menu function and store chosen option in option variable
         if option == "1":
-            print("You selected 'Ask questions'")
+             ask_questions()                                                            #print("You selected 'Ask questions'")
         elif option == "2":
             add_question()                                               # print("You selected 'Add a question'")
         elif option == "3":
