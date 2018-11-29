@@ -20,10 +20,28 @@ def ask_questions():            #create 2 empty lists for Q & A
             questions.append(text)  #if line number is even..Q
         else:
             answers.append(text)
+    
+    #add functionality to check answers and keep score
+    number_of_questions = len(questions) #check length of questions list
+    questions_and_answers = zip(questions, answers) #var Q&A and call zip function on this
+    
+    score = 0       #initialize empty var called score set to zero
+    
             
+    # for question, answer in zip(questions, answers): #take Q&A and use zip function to put them together in tuple in memory
+    #     guess = input(question + "> ")  #do an input with our guess
+        
+    for question, answer in questions_and_answers:  #this replaced above lines. replaced zip with Q&A function
+        guess = input(question + "> ")
+        if guess == answer:
+            score += 1
+            print("right!")
+            print(score)
+        else:
+            print("wrong!")
             
-    for question, answer in zip(questions, answers): #take Q&A and use zip function to put them together in tuple in memory
-        guess = input(question + "> ")  #do an input with our guess
+    print("You got {0} correct out of {1}".format(score, number_of_questions))
+        
         
 
 def add_question():
